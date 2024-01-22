@@ -22,6 +22,9 @@ To understad code:
 
 3) Third Task(salaries):
 As a user:
+- Interface Manual: Interface is made through readline node module. Interface assumes user is working on console. Type in asweres when propmpted
 - You will be asked for the following in this order: The salary before deduction, the tier, the contribution to nhif, contribution to nssf
 - For tier 1: you can contribute a maximum of 400 to nssf, and a maximum of 6000 to nhif
 - For tier 2: you can contribute a maximum of 400 to nssf, and a maximum of 18000 to nhif 
+- Comments are Included to explain how code works
+

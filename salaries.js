@@ -1,24 +1,9 @@
-// this is a function that takes in 4 arguments.
-// the salary inputed is reduced accoding to the other 3 arguments.
-// nhif is the argument tht is shows how much a person is contributing to nhif
-// nssf is just like nhif exept now the the money goes to nssf and not nhif
-// I have declared all the variables uesed for my code (refference line 27 to to line 38)
-    // the main dedeucter of the salary is tax (for example line 69 the tax is the (salary * 0.1)) (reference is the follwing lines
-    // 71,81,94,104,117,127,139,149,162,172) all of these have been done in accordance to the persons gross salary.
-    // Tax can be split into groups based on the salary:
-    // 1) salaries below 24000 (refference line 42 to line 64)
-    // 2) salaries =  24000 (refference line 64 to 87 )
-    // 3) salaries greater than 24000 and less than 32333 (refference line 87 to 110)
-    // 4) salaries greater than 32333 and less than 500000 (refference line 110 to 132)
-    // 5) salaries grester than 500000 and less than 800000 (refference line 132 to 155)
-    // 6) salaries greater than 800000 (refference line 155 to line 178 )
-    // throughout my code there is a statement that checks the salary range and then the statement that checks the tier.
-    // tier one means a person can only contrinute a maximum of 6000 to NHIF. Tier two means a person can contribute  a maximum of 18000 to NHIF.
-    // For both tiers a person can contribute a maximum of 400 to NSSF
-    // please not I have used the new rates for NHIF provided on the webpage link we were given(rates before Febuary 2023 and the new rates for NHIF on the webpage)
-    // the statements for the tier are nested within the salary statements for the salary for example if you look at line line 46 and 47 you will see this nesting. 
-    // I have checked for to see weather the contribution is valid for the given tier by doing contribution - maxpossiblecontribution
-    // and then checking weather this result is > 0, if it is it is not valid.
+// Readline interface is created in fiorst part of code 
+// after 4 questions are answered process is started. At the end of process the net Salary is loged
+// First part of function checks if all inputs are adequate. First part is the function called checker
+// Checker calls a given deduction function based on salary before deduction
+// Salary is apprpriately deducted in each deduction function
+// at the end of each deduction function the net salary is loged to the user.
 
 
     let salary
@@ -26,7 +11,7 @@
     let nhif
     let nssf
 
-    const readLine = require('readline');
+     const readLine = require('readline');
 
     const rl = readLine.createInterface({
         input: process.stdin,
@@ -35,36 +20,42 @@
     
     rl.question('What is the salary before deduction: ', (answer) => {
         salary = answer
+        
         secondQuestion()
         
     });
-   function secondQuestion()  {
+  function secondQuestion()  {
     rl.question('what is the tier: ', (answer) => {
         tier = answer
         thirdQuestion()
     })
-   }  
-   function thirdQuestion()  {
+  }  
+  function thirdQuestion()  {
     rl.question('what is the NHIF contribution: ', (answer) => {
         nhif = answer
         forthQuestion()
     })
-   }  
+  }  
 
-   function forthQuestion(){
+  function forthQuestion(){
     rl.question('what is the NSSF contribution: ', (answer) => {
         nssf = answer
         runProcess(salary,tier,nhif,nssf)
     })
-   }
+  }
 
-   function runProcess(salary,tier,nhif,nssf){
+  function runProcess(salary,tier,nhif,nssf){
     checker(salary,tier,nhif,nssf)
-   }
+  }
 
 
 
     function checker(salary,tier,nhif,nssf){
+       salary =  Number(salary)
+       tier = Number(tier)
+        nhif = Number(nhif)
+        nssf = Number(nssf)
+        let realSalary = 0
         if(salary < 0){
             return console.log('salary not valid')
         }
@@ -82,6 +73,7 @@
 
 
         }else if(realSalary > 24000 && realSalary < 32333){
+            console.log(realSalary)
             deduct25Percent(realSalary,tier,nhif,nssf)
             
             
